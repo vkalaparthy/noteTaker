@@ -15,6 +15,18 @@ app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "notes.html"));
 });
 
+app.get("/api/notes", (req, res) => {
+
+    console.log("In api notes");
+    fs.readFile(path.join(__dirname, "db", "db.json"), (err, data) => {
+        if (err) {
+            throw err;
+        }
+        console.log(JSON.parse(data));
+        return res.json(JSON.parse(data));
+    })
+});
+
 app.get ("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
     
