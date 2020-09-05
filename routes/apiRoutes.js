@@ -12,12 +12,12 @@ module.exports = (app) => {
 
     app.get("/api/notes", (req, res) => {
 
-        console.log("In api notes");
+        //console.log("In api notes");
         fs.readFile(pathToDBfile, (err, data) => {
             if (err) {
                 throw err;
             }
-            console.log(JSON.parse(data));
+            //console.log(JSON.parse(data));
             return res.json(JSON.parse(data));
         })
     });
