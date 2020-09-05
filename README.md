@@ -9,7 +9,7 @@ Created this application that can be used to write, save, and delete notes. This
 * [Tests](#tests)
 * [Questions](#questions)
 ## Installation
-This application is located at GitHub at and it is deployed at https://note-taker-sept5.herokuapp.com/
+This application is located at GitHub at https://github.com/vkalaparthy/noteTaker and it is deployed at https://note-taker-sept5.herokuapp.com/.  This application has 2 html routes and api routes to access JSON file and make modifications to the saved notes.
 ## Usage
 Users can create the notes, save them and view the notes that were written before.  This application can also delete the notes.  For the convenience, this application does not let user create notes with same "Note Title"
 ## License.
