@@ -8,5 +8,10 @@
     "title": "First Note",
     "text": "My first note",
     "id": "firstnote"
+  },
+  {
+    "title": "Second Note",
+    "text": "My second note",
+    "id": "secondnote"
   }
 ]
