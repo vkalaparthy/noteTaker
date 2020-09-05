@@ -32,6 +32,30 @@ app.get ("*", (req, res) => {
     
 });
 
+//post will write the notes into db.json, don't know if there a better way than read first and 
+// then add the newly created notes that is in req body  -- something is wrong with this POST
+app.post("/api/notes", (req, res) => {
+    console.log("In post");
+
+    fs.readFile(path.join(__dirname, "db", "db.json"), (err, data) => {
+        if (err) {
+            throw err;
+        }
+        console.log(JSON.parse(data));
+        let arrayOfNotes = JSON.parse(data);
+        arrayOfNotes.push(req.body);
+        console.log(arrayOfNotes);
+
+        fs.writeFile(path.join(__dirname, "db", "db.json"), JSON.stringify(arrayOfNotes, null, 2), (err) => {
+            if (err) {
+            throw err;
+            }
+        
+            console.log("Successfully wrote to db.json file");
+        });
+    })
+});
+
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
 });
