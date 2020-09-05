@@ -1,4 +1,4 @@
-const express = require("Express");
+const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
@@ -52,6 +52,7 @@ app.post("/api/notes", (req, res) => {
             }
         
             console.log("Successfully wrote to db.json file");
+            res.end("success");
         });
     })
 });
