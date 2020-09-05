@@ -43,6 +43,8 @@ app.post("/api/notes", (req, res) => {
         }
         console.log(JSON.parse(data));
         let arrayOfNotes = JSON.parse(data);
+        let newNote = req.body;
+        newNote.id = newNote.title.replace(/\s+/g, "").toLowerCase();
         arrayOfNotes.push(req.body);
         console.log(arrayOfNotes);
 
@@ -52,9 +54,35 @@ app.post("/api/notes", (req, res) => {
             }
         
             console.log("Successfully wrote to db.json file");
-            res.end("success");
         });
     })
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+    console.group("In delete");
+    console.log(req.params.id);
+    // Add code to search for id and remove that note
+    fs.readFile(path.join(__dirname, "db", "db.json"), (err, data) => {
+        if (err) {
+            throw err;
+        }
+        console.log(JSON.parse(data));
+        let arrayOfNotes = JSON.parse(data);
+        for (let i=0; i<arrayOfNotes.length; i++) {
+            if (arrayOfNotes[i].id === req.params.id) {
+                arrayOfNotes.splice(i, 1);
+            }
+        }
+        console.log(arrayOfNotes);
+        fs.writeFileSync(path.join(__dirname, "db", "db.json"), JSON.stringify(arrayOfNotes, null, 2), (err) => {
+            if (err) {
+            throw err;
+            }
+        
+            console.log("Successfully wrote to db.json file");
+        });
+    });
+
 });
 
 app.listen(PORT, function() {
