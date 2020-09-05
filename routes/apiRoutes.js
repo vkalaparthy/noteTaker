@@ -10,21 +10,21 @@ module.exports = (app) => {
 
     const pathToDBfile = path.join(__dirname, "..", "db", "db.json");
 
+    // API GET Request
+    // The below code is used to display the JSON data in the file
+    // The JSON data represents the saved notes
     app.get("/api/notes", (req, res) => {
 
-        //console.log("In api notes");
         fs.readFile(pathToDBfile, (err, data) => {
             if (err) {
                 throw err;
             }
-            //console.log(JSON.parse(data));
             return res.json(JSON.parse(data));
         })
     });
 
-    //post will write the notes into db.json, don't know if there a better way than read first and 
-    // then add the newly created notes that is in req body  -- check code agai!
-    // Write better check - don't insert if the item is already in 
+    // API POST Requests
+    // post will write the notes into db.json,  when the user saves the newly created note
     app.post("/api/notes", (req, res) => {
         //console.log("In post");
 
@@ -33,9 +33,9 @@ module.exports = (app) => {
 
     });
 
+    // API DELETE Requests
+    // This code will delete the note that user wants to delete
     app.delete("/api/notes/:id", (req, res) => {
-        //console.group("In delete");
-        //console.log(req.params.id);
         deleteANote(req.params.id);
         res.end("Deleted");
     });
@@ -43,7 +43,6 @@ module.exports = (app) => {
     function addANewNote (newNote) {
         readFileAsync(pathToDBfile)
         .then ( data => {
-            //console.log(JSON.parse(data));
             let arrayOfNotes = JSON.parse(data);
             let duplicate = false;
             newNote.id = newNote.title.replace(/\s+/g, "").toLowerCase();
@@ -54,7 +53,6 @@ module.exports = (app) => {
             }
             if(!duplicate) {
                 arrayOfNotes.push(newNote);
-                //console.log(arrayOfNotes);
                 writeFileAsync(pathToDBfile, JSON.stringify(arrayOfNotes, null, 2))
                 .then ( ()=>{
                     console.log("Successfully wrote to db.json file");
@@ -63,11 +61,10 @@ module.exports = (app) => {
         });
     };
     
+    // This function is going to search for id and remove that note from the db.json file
     function deleteANote(id) {
-        // Add code to search for id and remove that note
         readFileAsync(pathToDBfile)
         .then ( data => {
-            //console.log(JSON.parse(data));
             let arrayOfNotes = JSON.parse(data);
             for (let i=0; i<arrayOfNotes.length; i++) {
                 if (arrayOfNotes[i].id === id) {
