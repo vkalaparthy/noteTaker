@@ -24,28 +24,25 @@ module.exports = (app) => {
     });
 
     // API POST Requests
-    // post will write the notes into db.json,  when the user saves the newly created note
+    // post will write the notes into db.json
+    // and then returns the new note to the client
     app.post("/api/notes", (req, res) => {
-        //console.log("In post");
-
-        addANewNote(req.body);
-        res.end("Saved");
-
+        res.json(addANewNote(req.body));
     });
 
     // API DELETE Requests
-    // This code will delete the note that user wants to delete
+    // This code will delete the note that user wants to delete from db.json
     app.delete("/api/notes/:id", (req, res) => {
         deleteANote(req.params.id);
         res.end("Deleted");
     });
     
     function addANewNote (newNote) {
+        newNote.id = newNote.title.replace(/\s+/g, "").toLowerCase();
         readFileAsync(pathToDBfile)
         .then ( data => {
             let arrayOfNotes = JSON.parse(data);
             let duplicate = false;
-            newNote.id = newNote.title.replace(/\s+/g, "").toLowerCase();
             for (let i=0; i<arrayOfNotes.length; i++) {
                 if (arrayOfNotes[i].id === newNote.id) {
                     duplicate = true;
@@ -59,9 +56,11 @@ module.exports = (app) => {
                 })
             }
         });
+        return (JSON.stringify(newNote));
     };
     
-    // This function is going to search for id and remove that note from the db.json file
+    // This function is going to search for note that has the id 
+    //  and remove that note from the db.json
     function deleteANote(id) {
         readFileAsync(pathToDBfile)
         .then ( data => {
@@ -71,7 +70,7 @@ module.exports = (app) => {
                     arrayOfNotes.splice(i, 1);
                 }
             }
-            console.log(arrayOfNotes);
+            //console.log(arrayOfNotes);
             writeFileAsync(pathToDBfile, JSON.stringify(arrayOfNotes, null, 2))
             .then ( ()=>{
                 console.log("Successfully wrote to db.json file");
