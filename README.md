@@ -1,6 +1,6 @@
 # noteTaker
 ## Description
-Created this application that can be used to write, save, and delete notes. This application will use an express backend and it saves and retrieves note data from a JSON file. The front end for this application was already givem, The application frontend has already been created, I have developed the backend and connected the two.
+Created this application that can be used to write, save, and delete notes. This application will use an express backend and it saves and retrieves note data from a JSON file. The application frontend has already been created, I have developed the backend and connected the two.
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
