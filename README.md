@@ -21,6 +21,10 @@ When you click on "Get Started", you will be able to see your saved Notes, you c
 Type the note infomation you want to add and click save (as circled icon in the below screenshot. This will appear as saved Notes in the column.
 ![Image of image3](./assets/CaptureNote3.jpg)
 
+There is a API route, api/notes that will display the saved JSON file 
+
+![Image of image3](./assets/CaptureApi.JPG)
+
 ## License.
 ## Contributing
 ## Tests
