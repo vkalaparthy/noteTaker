@@ -18,6 +18,9 @@ When you click on "Get Started", you will be able to see your saved Notes, you c
 
 ![Image of image2](./assets/CaptureNote2.JPG)
 
+Type the note infomation you want to add and click save (as circled icon in the below screenshot. This will appear as saved Notes in the column.
+![Image of image3](./assets/CaptureNote3.jpg)
+
 ## License.
 ## Contributing
 ## Tests
