@@ -22,6 +22,7 @@ Type the note infomation you want to add and click save (as circled icon in the 
 ![Image of image3](./assets/CaptureNote3.jpg)
 
 There is a API route supported for this application at api/notes.
+![Image of image4](./assets/CaptureApi.JPG)
 
 ## License.
 ## Contributing
