@@ -27,7 +27,23 @@ module.exports = (app) => {
     // post will write the notes into db.json
     // and then returns the new note to the client
     app.post("/api/notes", (req, res) => {
-        res.json(addANewNote(req.body));
+        let id = 0;
+        readFileAsync("count.txt")
+        .then(data => {
+            id = parseInt(data) + 1;      
+            req.body.id = id;
+            let info = id;
+
+            fs.writeFile("count.txt", info, function(err) {
+                if (err) {
+                    return console.log(err);
+                }
+                
+                console.log("Success!");
+            });
+            res.json(addANewNote(req.body));
+        });
+
     });
 
     // API DELETE Requests
@@ -38,7 +54,7 @@ module.exports = (app) => {
     });
     
     function addANewNote (newNote) {
-        newNote.id = newNote.title.replace(/\s+/g, "").toLowerCase();
+    
         readFileAsync(pathToDBfile)
         .then ( data => {
             let arrayOfNotes = JSON.parse(data);
@@ -66,7 +82,7 @@ module.exports = (app) => {
         .then ( data => {
             let arrayOfNotes = JSON.parse(data);
             for (let i=0; i<arrayOfNotes.length; i++) {
-                if (arrayOfNotes[i].id === id) {
+                if (arrayOfNotes[i].id === parseInt(id)) {
                     arrayOfNotes.splice(i, 1);
                 }
             }

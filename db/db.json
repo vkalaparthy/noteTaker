@@ -1,17 +1,17 @@
 [
   {
-    "title": "Test Title",
-    "text": "Test text",
-    "id": "testtitle"
-  },
-  {
     "title": "First Note",
     "text": "My first note",
-    "id": "firstnote"
+    "id": 2
   },
   {
     "title": "Second Note",
     "text": "My second note",
-    "id": "secondnote"
+    "id": 3
+  },
+  {
+    "title": "Third Note",
+    "text": "My third note",
+    "id": 5
   }
 ]
