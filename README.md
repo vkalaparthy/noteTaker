@@ -5,7 +5,7 @@ Read, write, delete and save notes to get organized.
 * [General Info](#general-info)
 * [Technologies](#technologies)
 * [Installation](#installation)
-* [How to Use](#usage)
+* [How to Use](#how-to-use)
 * [Contact](#contact)
 
 ## General Info 
